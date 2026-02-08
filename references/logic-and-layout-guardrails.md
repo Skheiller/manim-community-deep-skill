@@ -6,6 +6,7 @@ Use these rules to prevent the most common quality failures:
 - arrow labels overlapping geometry,
 - causal/process animations playing in the wrong order.
 - objects appearing on top of each other without intentional layering.
+- graphs/labels drifting partially off-screen.
 
 ## 1) Container text-fit rules
 
@@ -48,6 +49,26 @@ def place_label_for_arrow(label: Mobject, arrow: Arrow, direction=UP, buff: floa
 - Use high-contrast text and keep decorative colors muted.
 - Keep one accent color per active concept; avoid multiple competing saturated colors.
 
+## 3b) Frame-fit and centering rules
+
+- Keep all critical content inside a safe frame budget (about 90% of frame width/height).
+- Center the primary content group unless intentional side-bias is part of the design.
+- Before final export, compute each major group's bounds and reflow if any part exits frame margins.
+
+Example helper:
+
+```python
+def fit_group_to_frame(group: Mobject, width_ratio: float = 0.9, height_ratio: float = 0.88):
+    max_w = config.frame_width * width_ratio
+    max_h = config.frame_height * height_ratio
+    if group.width > max_w:
+        group.scale_to_fit_width(max_w)
+    if group.height > max_h:
+        group.scale_to_fit_height(max_h)
+    group.move_to(ORIGIN)
+    return group
+```
+
 ## 4) Causal ordering for process animations
 
 Do not animate all edges/nodes in a process at once unless intentionally showing parallelism.
@@ -75,6 +96,7 @@ Guardrail:
 - Process beats follow declared dependency order.
 - New objects do not spawn on top of active objects without prior reflow.
 - Camera framing keeps active content inside safe margins after zoom/pan.
+- Main graph/diagram group remains centered or intentionally aligned by design.
 
 If any check fails, re-layout and re-time before final render.
 

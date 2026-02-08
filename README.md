@@ -38,8 +38,12 @@ This skill includes guidance for visual quality, not just API correctness:
 - Enforce causal animation order for process scenes (for example `L1->L2` before `L2->L3`).
 - Prefer transformation continuity (show where new objects come from) over object popping.
 - Use tracker-driven scenes and selective zoom/pan for stronger intuition.
+- Enforce frame-fit and centering (graphs/labels stay on-screen, no accidental clipping).
+- Use preview-first export: share 480p-style preview and wait for confirmation before full-quality render.
+- Keep text readable on screen using reading-time pacing (`word_count / wpm * 60 + 1s`).
+- Start with a mini blueprint and preference questions before detailed blueprint/code.
 
-See `references/visual-clarity-and-aesthetics.md` and `references/animation-philosophy-directives.md` for the full playbook and source notes.
+See `references/visual-clarity-and-aesthetics.md`, `references/animation-philosophy-directives.md`, and `references/preflight-brief-and-preferences.md` for the full playbook.
 
 ## Installation
 

@@ -50,6 +50,23 @@ Never animate every object at once unless intentional; preserve viewer attention
 - camera motion
 - If adding a new block causes crowding, move existing groups first, then reveal.
 
+## Frame-fit centering pattern
+
+```python
+def fit_group_to_frame(group: Mobject, width_ratio: float = 0.9, height_ratio: float = 0.88):
+    max_w = config.frame_width * width_ratio
+    max_h = config.frame_height * height_ratio
+    if group.width > max_w:
+        group.scale_to_fit_width(max_w)
+    if group.height > max_h:
+        group.scale_to_fit_height(max_h)
+    group.move_to(ORIGIN)
+    return group
+```
+
+- Apply to main graph/diagram groups before reveal and before final export.
+- Prevents off-screen charts and de-centered compositions.
+
 ## Formula safety
 
 - Use raw strings for `MathTex` (`r"\\mathcal{L}"`, `r"\\hat{y}"`) to avoid malformed output.
@@ -105,6 +122,23 @@ self.play(t.animate.set_value(2 * PI), run_time=3.0, rate_func=linear)
 ```
 
 - Use one driver to synchronize abstract and geometric views.
+
+## Text pacing (reading-time) pattern
+
+```python
+def min_read_time_seconds(text: str, wpm: int = 180, extra_seconds: float = 1.0) -> float:
+    words = len(text.split())
+    return (words / max(1, wpm)) * 60.0 + extra_seconds
+```
+
+```python
+paragraph = Text(long_text, font_size=34)
+self.play(Write(paragraph), run_time=1.2)
+self.wait(min_read_time_seconds(long_text, wpm=180, extra_seconds=1.0))
+```
+
+- Use this for full sentences/paragraphs so viewers can read before content transitions away.
+- For dense technical text, lower `wpm` (for example `140-160`) to extend dwell time.
 
 ## Camera emphasis pattern
 

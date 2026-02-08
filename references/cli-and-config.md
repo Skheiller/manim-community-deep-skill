@@ -28,5 +28,6 @@ manim -pql file.py SceneName
 
 1. `-ql -s` for layout.
 2. `-ql -n` for segment timing.
-3. `-qm -p` for integrated review.
-4. `-qh` (or above) for final render.
+3. `-ql -p` for shareable preview (480p-equivalent flow).
+4. Wait for user confirmation.
+5. `-qh` (or above) for final render.

@@ -4,6 +4,7 @@
 
 - Does each beat support the main idea?
 - Is progression understandable without pausing every second?
+- Was there a mini-blueprint + preference confirmation before detailed planning?
 
 ## Visual
 
@@ -20,6 +21,8 @@
 - Are equation/text blocks free from overlap with other labels or graphs?
 - Are arrow labels attached to shafts (not arrowheads) with consistent buffers?
 - Are titles, core diagrams, and annotations separated into stable zones?
+- Do main diagrams/graphs fit fully within frame-safe margins?
+- Is the primary composition centered (unless intentional offset)?
 
 ## Pacing
 
@@ -27,6 +30,7 @@
 - Are `rate_func` choices intentional for the mood (calm/energetic/emphasis)?
 - Are pauses (`wait`) used between conceptual steps so viewers can process changes?
 - Does the scene avoid both extremes: rushed transitions and dead air?
+- For readable text blocks, is dwell time based on reading speed plus a +1s margin?
 
 ## Motion Richness
 
@@ -55,3 +59,5 @@
 - Output format matches request.
 - Output path is confirmed.
 - Render command is reproducible.
+- Was a low-res preview (`-ql`, 480p-equivalent pass) rendered and shared first?
+- Was final high-quality export run only after user confirmation?

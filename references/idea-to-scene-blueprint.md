@@ -5,6 +5,12 @@
 - Raw paragraph, bullets, or narration text.
 - Optional constraints: duration, tone, brand colors, audience level.
 
+## Preflight gate (before detailed blueprint)
+
+1. Produce mini blueprint (4-7 bullets).
+2. Ask targeted preference questions (theme, motion, camera, 2D/3D, pacing, style, duration).
+3. Wait for confirmation (or apply explicit defaults if user says proceed without details).
+
 ## Transformation steps
 
 1. Extract core claim and 2-5 supporting beats.
@@ -23,6 +29,7 @@
 5. Allocate spatial budget per beat (title zone, core diagram zone, annotation zone).
 6. Define a motion plan per beat (transform, tracker update, reflow, camera emphasis).
 7. Define semantic color map (`color_map`) linking symbols to visuals.
+8. For text-heavy beats, compute read-time dwell using `seconds = (word_count / wpm) * 60 + 1`.
 
 ## Beat template
 
@@ -37,6 +44,7 @@
 - `reflow_actions` (which existing objects move/scale before new objects appear)
 - `camera_action` (`hold`, `zoom_in`, `zoom_out`, `pan`)
 - `state_driver` (`tracker_name` and what depends on it, if applicable)
+- `read_time_seconds` (derived from on-screen word count, with +1s safety margin)
 
 ## Split rule
 

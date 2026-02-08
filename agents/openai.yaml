@@ -1,4 +1,4 @@
 interface:
   display_name: "Manim Idea to Export"
   short_description: "Turn text ideas into Manim code and exports"
-  default_prompt: "Use $manim-idea-to-export to convert my text idea into Manim scene code with clean layout, staged logic, and export-ready render commands."
+  default_prompt: "Use $manim-idea-to-export to convert my text idea into Manim scene code with frame-safe layout, staged logic, 480p preview-first review, and export-ready render commands."

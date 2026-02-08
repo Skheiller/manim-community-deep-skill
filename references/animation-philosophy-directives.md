@@ -51,6 +51,25 @@ Examples:
 - pan when shifting focus across large layouts
 - Prefer purposeful motion to random effects; motion should encode logic progression.
 
+## Frame Fit and Spacing Priority
+
+- Treat frame fit as a hard requirement: no critical graph/text should leave visible bounds.
+- Keep the principal composition centered unless there is an intentional side-by-side design.
+- Before introducing new objects, create room via reflow (shift/scale/rearrange existing groups).
+
+## Reading-Time Priority for Text
+
+- Do not remove paragraph text immediately after writing.
+- Use a dwell-time estimate based on reading speed:
+- `seconds = (word_count / wpm) * 60 + 1`
+- Default `wpm = 180`; reduce to `140-160` for dense technical text.
+
+## Preview-First Export Policy
+
+- Always produce and show a low-res preview first (`-ql` 480p-equivalent workflow).
+- Ask for user confirmation.
+- Only after confirmation, run full-quality export.
+
 ## Process Logic Guard (Neural nets, pipelines, staged systems)
 
 - Animate stages in causal order.
@@ -66,3 +85,4 @@ Examples:
 - Manim animation API: https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html
 - Manim `ValueTracker`: https://docs.manim.community/en/stable/reference/manim.mobject.value_tracker.ValueTracker.html
 - Manim updaters: https://docs.manim.community/en/stable/reference/manim.animation.updaters.mobject_update_utils.html
+- Reading-speed meta-analysis (silent reading baseline context): https://www.sciencedirect.com/science/article/abs/pii/S0749596X19300786
