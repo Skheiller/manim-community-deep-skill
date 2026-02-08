@@ -30,6 +30,7 @@ class IdeaScene(Scene):
 - focus shift: `Indicate`, `Circumscribe`, subtle scale
 - concept morph: `Transform`, `ReplacementTransform`
 - remove noise: `FadeOut` and regroup
+- state-driven motion: `ValueTracker` + `always_redraw`
 
 ## Timing guidance
 
@@ -39,6 +40,15 @@ class IdeaScene(Scene):
 ## Readability rule
 
 Never animate every object at once unless intentional; preserve viewer attention hierarchy.
+
+## Motion richness rule
+
+- Most explanatory beats should include at least one meaningful movement:
+- transform/morph
+- tracker-driven update
+- focus shift
+- camera motion
+- If adding a new block causes crowding, move existing groups first, then reveal.
 
 ## Formula safety
 
@@ -70,6 +80,41 @@ def place_label_for_arrow(label: Mobject, arrow: Arrow, direction=UP, buff: floa
 
 - Prefer labels near arrow shafts, not arrowheads.
 - Keep label placement consistent across all edges in the same diagram.
+
+## Reflow-before-reveal pattern
+
+```python
+# Open space before introducing new content
+self.play(existing_group.animate.scale(0.92).to_edge(LEFT), run_time=0.8)
+self.play(FadeIn(new_panel), run_time=0.8)
+```
+
+- Reposition first, reveal second.
+- Prevents objects stacking on top of each other.
+
+## Tracker-driven dual-view pattern
+
+```python
+t = ValueTracker(0.0)
+
+eq = always_redraw(lambda: MathTex(r"f(t) = \sin(t)").to_edge(LEFT))
+dot = always_redraw(lambda: Dot(axes.c2p(t.get_value(), np.sin(t.get_value())), color=YELLOW))
+
+self.add(eq, dot)
+self.play(t.animate.set_value(2 * PI), run_time=3.0, rate_func=linear)
+```
+
+- Use one driver to synchronize abstract and geometric views.
+
+## Camera emphasis pattern
+
+```python
+frame = self.camera.frame
+self.play(frame.animate.move_to(detail_group).set(width=detail_group.width * 1.4), run_time=1.0)
+self.play(frame.animate.move_to(ORIGIN).set(width=14), run_time=1.0)
+```
+
+- Zoom in to inspect detail, zoom out to restore context.
 
 ## Causal sequence pattern (neural network/process flow)
 

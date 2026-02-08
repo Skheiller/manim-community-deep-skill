@@ -1,6 +1,6 @@
-# Manim Community Deep Skill
+# Manim Idea to Export Skill
 
-A Codex/agent skill that converts plain-language animation ideas into runnable **Manim Community Edition** scenes and export-ready render commands.
+A Codex/agent skill that converts plain-language animation ideas into runnable **Manim** scenes and export-ready render commands.
 
 ## What It Does
 
@@ -36,8 +36,10 @@ This skill includes guidance for visual quality, not just API correctness:
 - Iterate with a beauty-focused loop: layout -> timing -> rhythm -> final render.
 - Enforce layout-fit rules (text-in-box limits, arrow-label spacing, overlap checks).
 - Enforce causal animation order for process scenes (for example `L1->L2` before `L2->L3`).
+- Prefer transformation continuity (show where new objects come from) over object popping.
+- Use tracker-driven scenes and selective zoom/pan for stronger intuition.
 
-See `references/visual-clarity-and-aesthetics.md` for the full playbook and source notes.
+See `references/visual-clarity-and-aesthetics.md` and `references/animation-philosophy-directives.md` for the full playbook and source notes.
 
 ## Installation
 
@@ -51,19 +53,19 @@ SKILL_SOURCE="https://github.com/<owner>/<repo>"
 
 ```bash
 # Claude Code
-npx -y skills add "$SKILL_SOURCE" --agent claude-code --skill manim-community-deep --global --yes
+npx -y skills add "$SKILL_SOURCE" --agent claude-code --skill manim-idea-to-export --global --yes
 
 # Gemini CLI (native)
 gemini skills install "$SKILL_SOURCE" --scope user --consent
 
 # Codex
-npx -y skills add "$SKILL_SOURCE" --agent codex --skill manim-community-deep --global --yes
+npx -y skills add "$SKILL_SOURCE" --agent codex --skill manim-idea-to-export --global --yes
 
 # Anti-Gravity
-npx -y skills add "$SKILL_SOURCE" --agent antigravity --skill manim-community-deep --global --yes
+npx -y skills add "$SKILL_SOURCE" --agent antigravity --skill manim-idea-to-export --global --yes
 
 # Cursor
-npx -y skills add "$SKILL_SOURCE" --agent cursor --skill manim-community-deep --global --yes
+npx -y skills add "$SKILL_SOURCE" --agent cursor --skill manim-idea-to-export --global --yes
 ```
 
 ### General install (other supported agents)
@@ -71,13 +73,13 @@ npx -y skills add "$SKILL_SOURCE" --agent cursor --skill manim-community-deep --
 Install the same skill to every agent supported by the `skills` CLI:
 
 ```bash
-npx -y skills add "$SKILL_SOURCE" --skill manim-community-deep --agent '*' --global --yes
+npx -y skills add "$SKILL_SOURCE" --skill manim-idea-to-export --agent '*' --global --yes
 ```
 
 For any other client that supports folder-based `SKILL.md` loading, copy this repo into that client's skills directory:
 
 ```bash
-AGENT_SKILLS_DIR="/path/to/your/agent/skills" && git clone "$SKILL_SOURCE" /tmp/manim-community-deep-skill && mkdir -p "$AGENT_SKILLS_DIR/manim-community-deep" && rsync -a /tmp/manim-community-deep-skill/ "$AGENT_SKILLS_DIR/manim-community-deep/"
+AGENT_SKILLS_DIR="/path/to/your/agent/skills" && git clone "$SKILL_SOURCE" /tmp/manim-idea-to-export-skill && mkdir -p "$AGENT_SKILLS_DIR/manim-idea-to-export" && rsync -a /tmp/manim-idea-to-export-skill/ "$AGENT_SKILLS_DIR/manim-idea-to-export/"
 ```
 
 ### Verify installation
@@ -89,7 +91,7 @@ gemini skills list --all
 
 ## Quick Use Prompt
 
-`Use $manim-community-deep to convert my text idea into ManimCE scene code and export-ready render commands.`
+`Use $manim-idea-to-export to convert my text idea into Manim scene code and export-ready render commands.`
 
 ## Example Output Contract
 

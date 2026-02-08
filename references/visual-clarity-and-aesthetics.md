@@ -63,8 +63,10 @@ Use these graph patterns first:
 
 1. Layout pass (stills): verify composition and readability.
 2. Timing pass: tune `run_time`, `lag_ratio`, and pauses.
-3. Rhythm pass: remove dead time and reduce visual noise.
-4. Final quality pass at target resolution/fps (`-qm` or `-qh` depending on delivery).
+3. Motion pass: add purposeful transforms/tracker motion where the story feels static.
+4. Camera pass: add zoom-in/zoom-out/pan only where it increases clarity.
+5. Rhythm pass: remove dead time and reduce visual noise.
+6. Final quality pass at target resolution/fps (`-qm` or `-qh` depending on delivery).
 
 ## Source Notes
 

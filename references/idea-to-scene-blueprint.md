@@ -21,6 +21,8 @@
 - data/trends: `Axes` + plotted objects
 4. For process diagrams, declare edge dependencies and animation order (topological order, not all-at-once).
 5. Allocate spatial budget per beat (title zone, core diagram zone, annotation zone).
+6. Define a motion plan per beat (transform, tracker update, reflow, camera emphasis).
+7. Define semantic color map (`color_map`) linking symbols to visuals.
 
 ## Beat template
 
@@ -32,6 +34,9 @@
 - `voice/text sync note`
 - `dependency_preconditions` (what must already be visible before this beat starts)
 - `layout_constraints` (max text width, label buffers, keepout zones)
+- `reflow_actions` (which existing objects move/scale before new objects appear)
+- `camera_action` (`hold`, `zoom_in`, `zoom_out`, `pan`)
+- `state_driver` (`tracker_name` and what depends on it, if applicable)
 
 ## Split rule
 

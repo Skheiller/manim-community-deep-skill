@@ -1,9 +1,9 @@
 ---
-name: manim-community-deep
-description: Convert plain-language ideas into Manim Community Edition scene code and exported media. Use when a user provides text concepts, narration, storyboard notes, or rough animation intent and wants complete ManimCE implementation, render commands, iterative revisions, and final output export. Do not use for ManimGL/manimlib codebases.
+name: manim-idea-to-export
+description: Convert plain-language ideas into Manim scene code and exported media. Use when a user provides text concepts, narration, storyboard notes, or rough animation intent and wants complete Manim implementation, render commands, iterative revisions, and final output export. Do not use for ManimGL/manimlib codebases.
 ---
 
-# Manim Community Deep
+# Manim Idea to Export
 
 ## Overview
 
@@ -24,18 +24,23 @@ Prefer this skill for requests like “animate this explanation”, “turn this
 - Resolve ambiguity by making minimal explicit assumptions in code comments or summary.
 - If core requirements are missing, ask focused clarification questions before coding.
 - If user requests “beautiful”, “clean”, “cinematic”, or “3B1B-like”, apply the visual clarity and pacing playbook.
+- Unless user asks for minimal motion, apply the animation philosophy directives by default.
 
 2. Build a scene blueprint from text.
 - Convert narrative into ordered beats.
 - For each beat define: on-screen objects, transition, duration, and emphasis.
 - Split into one or more `Scene` classes if conceptually distinct.
 - For process diagrams, define directed dependencies and a topological animation order before writing code.
+- Include a reflow plan per beat: what moves/shrinks/fades to create space for incoming objects.
+- Include camera intent per beat (hold, pan, zoom in, zoom out) when layout is dense.
 
 3. Generate runnable ManimCE code.
 - Use `from manim import *`.
 - Keep `construct()` orchestration-focused.
 - Use helper builders for repeated objects/layouts.
 - Add layout guard helpers for text-fit, label-fit, and collision-safe spacing.
+- Prefer transformations over object spawning when provenance can be shown.
+- Use `ValueTracker`/`always_redraw` for interdependent visuals instead of disconnected static states.
 
 4. Render in a fast feedback loop.
 - Layout check: `-ql -s`
@@ -43,6 +48,7 @@ Prefer this skill for requests like “animate this explanation”, “turn this
 - Full draft: `-qm -p`
 - Final export: `-qh` (or higher as needed)
 - Add an overlap pass: verify no text overflows containers and no labels collide with arrows/axes.
+- Add a movement pass: verify the scene is not visually static and includes purposeful transitions between beats.
 
 5. Export and report deliverables.
 - Return exact render command used.
@@ -61,6 +67,7 @@ For every idea-to-code request, produce:
 - A short pacing rationale (why key beats are fast/slow).
 - A short layout-fit note (how text/labels were constrained to avoid overflow/clutter).
 - A short logic-order note for process flows (for example: `L1->L2` then `L2->L3`).
+- A short motion rationale (where transformations, tracker-driven motion, and camera moves were used).
 
 ## Code Quality Rules
 
@@ -73,6 +80,9 @@ For every idea-to-code request, produce:
 - Default to a clean dark scene (`config.background_color = "#000000"` unless the user requests otherwise).
 - Never leave raw overflow: scale/wrap/reflow text to container width before rendering.
 - Keep arrow labels outside arrowheads and with consistent buffer, then resolve collisions.
+- Avoid low-motion output: each explanatory beat should include meaningful motion unless intentionally a pause beat.
+- Before introducing new objects, create spatial room by moving/reframing existing content.
+- Use semantic color mapping consistently across equations and matching visual objects.
 
 ## Safety and Validation
 
@@ -95,6 +105,7 @@ For every idea-to-code request, produce:
 3. If visuals are cluttered, reduce simultaneous motion and split into more beats.
 4. If text or labels collide/overflow, rerun with stricter fit constraints and spacing buffers.
 5. If process logic appears out of order, enforce staged dependency animation (no downstream motion before upstream state exists).
+6. If output feels static, add tracker-driven motion, transformation continuity, and camera emphasis beats.
 
 ## References
 
@@ -106,4 +117,5 @@ Load only what is needed.
 - `references/quality-checklist.md`
 - `references/visual-clarity-and-aesthetics.md`
 - `references/logic-and-layout-guardrails.md`
+- `references/animation-philosophy-directives.md`
 - `references/troubleshooting.md`

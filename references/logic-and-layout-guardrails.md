@@ -5,6 +5,7 @@ Use these rules to prevent the most common quality failures:
 - text spilling outside boxes,
 - arrow labels overlapping geometry,
 - causal/process animations playing in the wrong order.
+- objects appearing on top of each other without intentional layering.
 
 ## 1) Container text-fit rules
 
@@ -72,6 +73,8 @@ Guardrail:
 - No overlapping formula/text blocks unless intentional.
 - No arrow labels sitting on arrowheads.
 - Process beats follow declared dependency order.
+- New objects do not spawn on top of active objects without prior reflow.
+- Camera framing keeps active content inside safe margins after zoom/pan.
 
 If any check fails, re-layout and re-time before final render.
 

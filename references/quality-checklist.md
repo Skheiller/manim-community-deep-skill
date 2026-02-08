@@ -28,11 +28,20 @@
 - Are pauses (`wait`) used between conceptual steps so viewers can process changes?
 - Does the scene avoid both extremes: rushed transitions and dead air?
 
+## Motion Richness
+
+- Does most explanatory content include meaningful movement (not just static reveals)?
+- Are transformations used to show provenance of new information where possible?
+- Are tracker-driven updates used for continuously changing concepts?
+- Are zoom/pan moves used when they improve focus and context transitions?
+- Is there a reflow step before adding dense new content to avoid stacking overlap?
+
 ## Logic and Causality
 
 - For process diagrams, is animation order topologically valid?
 - For neural network flow, does `L1->L2` visually complete before `L2->L3` begins?
 - Are parallel animations used only when the script explicitly describes parallelism?
+- For staged systems, are downstream motions blocked until upstream state is established?
 
 ## Technical
 
