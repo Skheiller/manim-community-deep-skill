@@ -25,6 +25,54 @@ Not intended for `manimlib` / ManimGL codebases.
 - `agents/openai.yaml`: UI metadata
 - `references/`: blueprinting, code-generation, render/export, quality checks, troubleshooting
 
+## Installation
+
+Use this source value in the commands below:
+
+```bash
+SKILL_SOURCE="https://github.com/<owner>/<repo>"
+```
+
+### One-line installs (specific clients)
+
+```bash
+# Claude Code (Cloud Code)
+npx -y skills add "$SKILL_SOURCE" --agent claude-code --skill manim-community-deep --global --yes
+
+# Gemini CLI (native)
+gemini skills install "$SKILL_SOURCE" --scope user --consent
+
+# Codex
+npx -y skills add "$SKILL_SOURCE" --agent codex --skill manim-community-deep --global --yes
+
+# Anti-Gravity
+npx -y skills add "$SKILL_SOURCE" --agent antigravity --skill manim-community-deep --global --yes
+
+# Cursor
+npx -y skills add "$SKILL_SOURCE" --agent cursor --skill manim-community-deep --global --yes
+```
+
+### General install (other supported agents)
+
+Install the same skill to every agent supported by the `skills` CLI:
+
+```bash
+npx -y skills add "$SKILL_SOURCE" --skill manim-community-deep --agent '*' --global --yes
+```
+
+For any other client that supports folder-based `SKILL.md` loading, copy this repo into that client's skills directory:
+
+```bash
+AGENT_SKILLS_DIR="/path/to/your/agent/skills" && git clone "$SKILL_SOURCE" /tmp/manim-community-deep-skill && mkdir -p "$AGENT_SKILLS_DIR/manim-community-deep" && rsync -a /tmp/manim-community-deep-skill/ "$AGENT_SKILLS_DIR/manim-community-deep/"
+```
+
+### Verify installation
+
+```bash
+npx -y skills list --global
+gemini skills list --all
+```
+
 ## Quick Use Prompt
 
 `Use $manim-community-deep to convert my text idea into ManimCE scene code and export-ready render commands.`
