@@ -23,22 +23,26 @@ Prefer this skill for requests like “animate this explanation”, “turn this
 - Extract objective, audience, visual style, duration target, and output format.
 - Resolve ambiguity by making minimal explicit assumptions in code comments or summary.
 - If core requirements are missing, ask focused clarification questions before coding.
+- If user requests “beautiful”, “clean”, “cinematic”, or “3B1B-like”, apply the visual clarity and pacing playbook.
 
 2. Build a scene blueprint from text.
 - Convert narrative into ordered beats.
 - For each beat define: on-screen objects, transition, duration, and emphasis.
 - Split into one or more `Scene` classes if conceptually distinct.
+- For process diagrams, define directed dependencies and a topological animation order before writing code.
 
 3. Generate runnable ManimCE code.
 - Use `from manim import *`.
 - Keep `construct()` orchestration-focused.
 - Use helper builders for repeated objects/layouts.
+- Add layout guard helpers for text-fit, label-fit, and collision-safe spacing.
 
 4. Render in a fast feedback loop.
 - Layout check: `-ql -s`
 - Timing check: `-ql -n a,b`
 - Full draft: `-qm -p`
 - Final export: `-qh` (or higher as needed)
+- Add an overlap pass: verify no text overflows containers and no labels collide with arrows/axes.
 
 5. Export and report deliverables.
 - Return exact render command used.
@@ -54,6 +58,9 @@ For every idea-to-code request, produce:
 - A concrete render command.
 - The expected output location/filename.
 - A short “edit knobs” list (what to change for speed/style/detail).
+- A short pacing rationale (why key beats are fast/slow).
+- A short layout-fit note (how text/labels were constrained to avoid overflow/clutter).
+- A short logic-order note for process flows (for example: `L1->L2` then `L2->L3`).
 
 ## Code Quality Rules
 
@@ -62,6 +69,10 @@ For every idea-to-code request, produce:
 - Keep updaters minimal and scoped.
 - Avoid hidden global mutation.
 - Ensure every visual beat is intentional and readable.
+- Make pacing explicit for key beats (`run_time`, `rate_func`, and pauses), not implicit defaults.
+- Default to a clean dark scene (`config.background_color = "#000000"` unless the user requests otherwise).
+- Never leave raw overflow: scale/wrap/reflow text to container width before rendering.
+- Keep arrow labels outside arrowheads and with consistent buffer, then resolve collisions.
 
 ## Safety and Validation
 
@@ -82,6 +93,8 @@ For every idea-to-code request, produce:
 1. If `Tex/MathTex` fails, fix LaTeX toolchain first (`latex`, `dvisvgm`).
 2. If rendering is slow, reduce quality and isolate animation ranges.
 3. If visuals are cluttered, reduce simultaneous motion and split into more beats.
+4. If text or labels collide/overflow, rerun with stricter fit constraints and spacing buffers.
+5. If process logic appears out of order, enforce staged dependency animation (no downstream motion before upstream state exists).
 
 ## References
 
@@ -91,4 +104,6 @@ Load only what is needed.
 - `references/code-generation-patterns.md`
 - `references/render-and-export-playbook.md`
 - `references/quality-checklist.md`
+- `references/visual-clarity-and-aesthetics.md`
+- `references/logic-and-layout-guardrails.md`
 - `references/troubleshooting.md`

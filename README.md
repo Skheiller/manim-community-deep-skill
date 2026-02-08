@@ -25,6 +25,20 @@ Not intended for `manimlib` / ManimGL codebases.
 - `agents/openai.yaml`: UI metadata
 - `references/`: blueprinting, code-generation, render/export, quality checks, troubleshooting
 
+## Practical Usage Advice (Beautiful Output)
+
+This skill includes guidance for visual quality, not just API correctness:
+
+- Build one clear idea per beat (avoid dense simultaneous changes).
+- Make timing explicit with `run_time`, `rate_func`, and intentional pauses.
+- Prefer progressive reveal (`Write`/`Create`/`LaggedStart`) over full-screen dumps.
+- Use proven graph motifs (`Axes`, `NumberPlane`, `NumberLine`, `ComplexPlane`) and staged annotations.
+- Iterate with a beauty-focused loop: layout -> timing -> rhythm -> final render.
+- Enforce layout-fit rules (text-in-box limits, arrow-label spacing, overlap checks).
+- Enforce causal animation order for process scenes (for example `L1->L2` before `L2->L3`).
+
+See `references/visual-clarity-and-aesthetics.md` for the full playbook and source notes.
+
 ## Installation
 
 Use this source value in the commands below:
@@ -36,7 +50,7 @@ SKILL_SOURCE="https://github.com/<owner>/<repo>"
 ### One-line installs (specific clients)
 
 ```bash
-# Claude Code (Cloud Code)
+# Claude Code
 npx -y skills add "$SKILL_SOURCE" --agent claude-code --skill manim-community-deep --global --yes
 
 # Gemini CLI (native)
