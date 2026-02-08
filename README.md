@@ -87,14 +87,6 @@ A successful run should return:
 - Expected output path
 - Short list of tweak knobs
 
-## Validation
-
-If you have the skill tooling available:
-
-```bash
-python3 /Users/lmostafa/.codex/skills/.system/skill-creator/scripts/quick_validate.py .
-```
-
 ## License
 
 MIT
