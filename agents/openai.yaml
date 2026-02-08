@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manim Idea To Export"
+  short_description: "Turn text ideas into Manim code and exports"
+  default_prompt: "Use $manim-community-deep to convert my text idea into ManimCE scene code and export-ready render commands."
