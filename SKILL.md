@@ -1,6 +1,6 @@
 ---
 name: manim-idea-to-export
-description: Convert plain-language ideas into Manim scene code and exported media. Use when a user provides text concepts, narration, storyboard notes, or rough animation intent and wants complete Manim implementation, render commands, iterative revisions, and final output export. Do not use for ManimGL/manimlib codebases.
+description: Convert plain-language concepts into ManimCE scene plans, runnable code, preview renders, and final export commands. Use when a user provides narration, bullet points, or storyboard notes and wants end-to-end ManimCE output. Do not use for ManimGL/manimlib codebases.
 ---
 
 # Manim Idea to Export
@@ -101,6 +101,20 @@ For every idea-to-code request, produce:
 - Use semantic color mapping consistently across equations and matching visual objects.
 - Keep text on screen long enough to read using a words-per-minute pacing rule.
 - Treat confirmed user preferences as locked constraints unless user asks to change them.
+
+## Environment Assumptions
+
+- Target runtime is Manim Community Edition (`manim`), not `manimgl`.
+- Assume a project-local virtual environment is active before render commands are run.
+- For `Tex/MathTex`, assume `latex` and `dvisvgm` are required.
+- Assume `ffmpeg` is required for video export.
+
+## Execution Boundaries
+
+- Keep command guidance scoped to the current workspace/project path.
+- Do not suggest destructive commands (for example force-delete, history rewrite, or reset-hard flows).
+- Do not suggest global dependency mutation unless the user explicitly asks for global installation.
+- If required tooling is missing, stop and return concrete remediation commands before proceeding.
 
 ## Safety and Validation
 

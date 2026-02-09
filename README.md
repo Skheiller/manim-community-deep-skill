@@ -1,6 +1,6 @@
 # Manim Idea to Export Skill
 
-A Codex/agent skill that converts plain-language animation ideas into runnable **Manim** scenes and export-ready render commands.
+An agent skill that converts plain-language animation ideas into runnable **ManimCE** scenes and export-ready render commands.
 
 ## What It Does
 
@@ -8,6 +8,12 @@ A Codex/agent skill that converts plain-language animation ideas into runnable *
 - Generates ManimCE code (`from manim import *`).
 - Runs an iteration loop (layout, timing, full draft, final export).
 - Produces explicit output contract: file path, render command, and tweak knobs.
+
+## Scope and Boundaries
+
+- Target engine: Manim Community Edition (`manim` package).
+- Excluded engine: ManimGL / `manimlib`.
+- Focus: idea-to-blueprint, code generation, preview-first render loop, final export guidance.
 
 ## Intended Trigger
 
@@ -53,7 +59,7 @@ Use this source value in the commands below:
 SKILL_SOURCE="https://github.com/Skheiller/manim-community-deep-skill"
 ```
 
-### One-line installs (specific clients)
+### One-line install examples (verify in your client/runtime)
 
 ```bash
 # Claude Code
@@ -72,7 +78,7 @@ npx -y skills add "$SKILL_SOURCE" --agent antigravity --skill manim-idea-to-expo
 npx -y skills add "$SKILL_SOURCE" --agent cursor --skill manim-idea-to-export --global --yes
 ```
 
-### General install (other supported agents)
+### General install (other agents supported by `skills` CLI)
 
 Install the same skill to every agent supported by the `skills` CLI:
 
@@ -96,6 +102,13 @@ gemini skills list --all
 ## Quick Use Prompt
 
 `Use $manim-idea-to-export to convert my text idea into Manim scene code and export-ready render commands.`
+
+## Example Prompts
+
+1. Concept explanation:
+`Use $manim-idea-to-export to animate Newton's method as a 45-second scene with calm pacing and minimal camera motion.`
+2. Process diagram:
+`Use $manim-idea-to-export to turn these bullet points into a 2D pipeline animation with causal order and a preview-first render workflow.`
 
 ## Example Output Contract
 
