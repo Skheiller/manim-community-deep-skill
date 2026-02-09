@@ -112,6 +112,8 @@ self.play(FadeIn(new_panel), run_time=0.8)
 ## Tracker-driven dual-view pattern
 
 ```python
+import numpy as np
+
 t = ValueTracker(0.0)
 
 eq = always_redraw(lambda: MathTex(r"f(t) = \sin(t)").to_edge(LEFT))
@@ -141,6 +143,8 @@ self.wait(min_read_time_seconds(long_text, wpm=180, extra_seconds=1.0))
 - For dense technical text, lower `wpm` (for example `140-160`) to extend dwell time.
 
 ## Camera emphasis pattern
+
+Use this only when your scene subclasses `MovingCameraScene`.
 
 ```python
 frame = self.camera.frame

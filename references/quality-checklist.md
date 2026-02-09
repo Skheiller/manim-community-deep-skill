@@ -52,7 +52,7 @@
 - Runs in isolated venv.
 - `manim --version` confirms ManimCE.
 - TeX scenes compile when `MathTex` is used.
-- LaTeX strings are valid (for example `r\"\\mathcal{L}\"`, not malformed tokens).
+- LaTeX strings are valid (for example `r"\\mathcal{L}"`, not malformed tokens).
 
 ## Export
 
