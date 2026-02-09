@@ -53,29 +53,23 @@ See `references/visual-clarity-and-aesthetics.md`, `references/animation-philoso
 
 ## Installation
 
-Use this source value in the commands below:
-
-```bash
-SKILL_SOURCE="https://github.com/Skheiller/manim-community-deep-skill"
-```
-
-### One-line install examples (verify in your client/runtime)
+### One-line install examples
 
 ```bash
 # Claude Code
-npx -y skills add "$SKILL_SOURCE" --agent claude-code --skill manim-idea-to-export --global --yes
+npx -y skills add https://github.com/Skheiller/manim-community-deep-skill --agent claude-code --skill manim-idea-to-export --global --yes
 
 # Gemini CLI (native)
-gemini skills install "$SKILL_SOURCE" --scope user --consent
+gemini skills install https://github.com/Skheiller/manim-community-deep-skill --scope user --consent
 
 # Codex
-npx -y skills add "$SKILL_SOURCE" --agent codex --skill manim-idea-to-export --global --yes
+npx -y skills add https://github.com/Skheiller/manim-community-deep-skill --agent codex --skill manim-idea-to-export --global --yes
 
 # Anti-Gravity
-npx -y skills add "$SKILL_SOURCE" --agent antigravity --skill manim-idea-to-export --global --yes
+npx -y skills add https://github.com/Skheiller/manim-community-deep-skill --agent antigravity --skill manim-idea-to-export --global --yes
 
 # Cursor
-npx -y skills add "$SKILL_SOURCE" --agent cursor --skill manim-idea-to-export --global --yes
+npx -y skills add https://github.com/Skheiller/manim-community-deep-skill --agent cursor --skill manim-idea-to-export --global --yes
 ```
 
 ### General install (other agents supported by `skills` CLI)
@@ -83,13 +77,13 @@ npx -y skills add "$SKILL_SOURCE" --agent cursor --skill manim-idea-to-export --
 Install the same skill to every agent supported by the `skills` CLI:
 
 ```bash
-npx -y skills add "$SKILL_SOURCE" --skill manim-idea-to-export --agent '*' --global --yes
+npx -y skills add https://github.com/Skheiller/manim-community-deep-skill --skill manim-idea-to-export --agent '*' --global --yes
 ```
 
 For any other client that supports folder-based `SKILL.md` loading, copy this repo into that client's skills directory:
 
 ```bash
-AGENT_SKILLS_DIR="/path/to/your/agent/skills" && git clone "$SKILL_SOURCE" /tmp/manim-idea-to-export-skill && mkdir -p "$AGENT_SKILLS_DIR/manim-idea-to-export" && rsync -a /tmp/manim-idea-to-export-skill/ "$AGENT_SKILLS_DIR/manim-idea-to-export/"
+AGENT_SKILLS_DIR="/path/to/your/agent/skills" && git clone "https://github.com/Skheiller/manim-community-deep-skill" /tmp/manim-idea-to-export-skill && mkdir -p "$AGENT_SKILLS_DIR/manim-idea-to-export" && rsync -a /tmp/manim-idea-to-export-skill/ "$AGENT_SKILLS_DIR/manim-idea-to-export/"
 ```
 
 ### Verify installation
