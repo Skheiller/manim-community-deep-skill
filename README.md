@@ -50,7 +50,7 @@ See `references/visual-clarity-and-aesthetics.md`, `references/animation-philoso
 Use this source value in the commands below:
 
 ```bash
-SKILL_SOURCE="https://github.com/<owner>/<repo>"
+SKILL_SOURCE="https://github.com/Skheiller/manim-community-deep-skill"
 ```
 
 ### One-line installs (specific clients)
