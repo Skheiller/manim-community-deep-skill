@@ -31,7 +31,7 @@ Not intended for `manimlib` / ManimGL codebases.
 - `agents/openai.yaml`: UI metadata
 - `references/`: blueprinting, code-generation, render/export, quality checks, troubleshooting
 
-## Practical Usage Advice (Beautiful Output)
+## Practical Usage  
 
 This skill includes guidance for visual quality, not just API correctness:
 
