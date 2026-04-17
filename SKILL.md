@@ -1,6 +1,6 @@
 ---
 name: manim-idea-to-export
-description: Convert plain-language concepts into ManimCE scene plans, runnable code, preview renders, and final export commands. Use when a user provides narration, bullet points, or storyboard notes and wants end-to-end ManimCE output. Do not use for ManimGL/manimlib codebases.
+description: "Convert plain-language concepts into ManimCE scene plans, runnable code, preview renders, and final export commands. Use when a user asks to create a Manim animation, math animation, explainer video, motion graphics, or animated scene from narration, bullet points, or storyboard notes. Do not use for ManimGL/manimlib codebases."
 ---
 
 # Manim Idea to Export
@@ -16,6 +16,48 @@ Use this skill to turn user text ideas into production-ready ManimCE output thro
 5. export final media.
 
 Prefer this skill for requests like “animate this explanation”, “turn this paragraph into a video”, or “convert these bullet points into Manim and export”.
+
+## Example
+
+**User input:** “Animate the Pythagorean theorem — show squares on each side of a right triangle”
+
+**Mini-blueprint:**
+- Beat 1: Draw right triangle with labeled sides a, b, c
+- Beat 2: Grow square on side a, then side b
+- Beat 3: Grow square on hypotenuse c
+- Beat 4: Animate area comparison a² + b² = c²
+
+**Generated Scene (abbreviated):**
+```python
+from manim import *
+
+class PythagoreanTheorem(Scene):
+    def construct(self):
+        tri = Polygon(ORIGIN, 3*RIGHT, 3*RIGHT+2*UP, color=WHITE)
+        labels = VGroup(
+            MathTex(“a”).next_to(tri, DOWN),
+            MathTex(“b”).next_to(tri, RIGHT),
+            MathTex(“c”).move_to(tri.get_center() + 0.5*LEFT + 0.5*UP),
+        )
+        self.play(Create(tri), Write(labels), run_time=1.5)
+
+        sq_a = Square(side_length=3, color=BLUE, fill_opacity=0.3).next_to(tri, DOWN, buff=0)
+        sq_b = Square(side_length=2, color=GREEN, fill_opacity=0.3).next_to(tri, RIGHT, buff=0)
+        self.play(GrowFromEdge(sq_a, UP), run_time=1)
+        self.play(GrowFromEdge(sq_b, LEFT), run_time=1)
+
+        sq_c = Square(side_length=3.6, color=YELLOW, fill_opacity=0.3).rotate(
+            tri.get_angle()
+        ).move_to(tri.get_center() + 1.5*LEFT + 1.5*UP)
+        self.play(GrowFromCenter(sq_c), run_time=1.5)
+
+        eq = MathTex(“a^2”, “+”, “b^2”, “=”, “c^2”).to_edge(DOWN)
+        eq[0].set_color(BLUE); eq[2].set_color(GREEN); eq[4].set_color(YELLOW)
+        self.play(Write(eq), run_time=1.5)
+        self.wait(2)
+```
+
+**Render command:** `manim -ql -p scenes/pythagorean.py PythagoreanTheorem`
 
 ## Idea-to-Export Workflow
 
@@ -86,11 +128,6 @@ For every idea-to-code request, produce:
 
 ## Code Quality Rules
 
-- Use semantic names (`claim_text`, `curve_group`, `highlight_box`).
-- Favor composable primitives (`VGroup`, `Axes`, `MathTex`, `Text`, `Transform`).
-- Keep updaters minimal and scoped.
-- Avoid hidden global mutation.
-- Ensure every visual beat is intentional and readable.
 - Make pacing explicit for key beats (`run_time`, `rate_func`, and pauses), not implicit defaults.
 - Default to a clean dark scene (`config.background_color = "#000000"` unless the user requests otherwise).
 - Never leave raw overflow: scale/wrap/reflow text to container width before rendering.
